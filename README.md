@@ -1,21 +1,11 @@
-# DevOps Learning Journey
+# DevOps Labs Log
 
-Your personal repository for tracking progress through the CoderCo DevOps curriculum.
-
-## Quick Start
-
-1. Click **"Use this template"** then **"Create a new repository"**
-2. Clone your new repo locally
-3. Start learning and commit your progress
-
-![UseTemplate](./images/UseTemplate.png)
-
-![CreateRepo](./images/Createrepo.png)
+A personal log of hands-on DevOps labs, challenges, and projects, focused on building skills used in real production environments.
 
 ## Repository Structure
 
 ```
-devops-learning/
+devops-labs-log/
 ├── 01-linux/           # Linux Fundamentals
 ├── 02-bash/            # Bash Scripting
 ├── 03-git/             # Version Control
@@ -33,81 +23,36 @@ Each module contains:
 - **labs/** – Completed lab exercises
 - **projects/** – Hands-on projects
 
-## Progress Tracker
+## How I Use This Repo
 
-| Module | Status | Notes | Labs | Projects |
-|--------|--------|-------|------|----------|
-| 01 - Linux | Not Started | 0/0 | 0/0 | 0/0 |
-| 02 - Bash | Not Started | 0/0 | 0/0 | 0/0 |
-| 03 - Git | Not Started | 0/0 | 0/0 | 0/0 |
-| 04 - Networking | Not Started | 0/0 | 0/0 | 0/0 |
-| 05 - Docker | Not Started | 0/0 | 0/0 | 0/0 |
-| 06 - AWS | Not Started | 0/0 | 0/0 | 0/0 |
-| 07 - Terraform | Not Started | 0/0 | 0/0 | 0/0 |
-| 08 - CI/CD | Not Started | 0/0 | 0/0 | 0/0 |
-| 09 - Kubernetes | Not Started | 0/0 | 0/0 | 0/0 |
+### Notes
+Concise explanations written in my own words.
 
-Update this table as you progress.
+### Labs
+Step by step documentation of hands-on exercises, including commands, errors, and lessons learned.
 
-## How to Use This Repo
+### Projects
+Hands-on projects with code and a README explaining design decisions and trade-offs.
 
-### Taking Notes
+## Workflow & Best Practices
 
-After each lesson, create a note:
+- Commit often with meaningful messages
+- Document labs clearly so they can be reproduced later
+- Aim for clarity, not perfection
+- Revisit and improve older labs as skills develop
 
-```bash
-touch 01-linux/notes/file-permissions.md
-```
+## Acknowledgements
 
-Write in your own words – this helps you remember.
+This repository is inspired by and originally structured from the
+[CoderCo DevOps Learning](https://github.com/CoderCo-Learning/devops-learning)
+curriculum.
 
-### Completing Labs
-
-Document what you did and what you learned:
-
-```bash
-touch 01-linux/labs/lab01-basic-commands.md
-```
-
-Include commands, outputs, and any errors you hit.
-
-### Building Projects
-
-Create a folder with your code and a README:
-
-```
-01-linux/projects/backup-script/
-├── backup.sh
-└── README.md
-```
-
-## Best Practices
-
-**Commit often** – After each lesson, lab, or meaningful progress.
-
-**Write good commit messages:**
-
-```bash
-# Bad
-git commit -m "updates"
-
-# Good
-git commit -m "Add notes on Linux file permissions"
-```
-
-**Stay organised** – Put files in the right folders.
-
-**Share your progress** – Post on LinkedIn, tag @CoderCo!
-
-## Useful Links
+The content has been adapted, extended, and reorganized as part of my
+personal DevOps learning and hands-on practice.
 
 - [CoderCo Community](https://www.skool.com/coderco)
-- [CoderCo Dotfiles](https://github.com/coderco-learning/dotfiles)
 
 ## License
 
 MIT – Use this template however you like.
 
----
-
-Questions? Ask in the CoderCo community.
