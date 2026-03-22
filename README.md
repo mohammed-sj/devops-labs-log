@@ -26,7 +26,7 @@ Each module contains:
 ## How I Use This Repo
 
 ### Notes
-Concise explanations written in my own words.
+Concise explanations based on my understanding of each topic.
 
 ### Labs
 Step by step documentation of hands-on exercises, including commands, errors, and lessons learned.
