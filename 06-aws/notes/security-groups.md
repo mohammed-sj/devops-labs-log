@@ -20,5 +20,5 @@ Security Groups keep EC2 instances secure by letting you control exactly which t
 - Ports and protocols (TCP/UDP) was mentioned in the Networking module, SGs are the AWS implementation of firewall rules applied to those same ports.
 - Private vs public IPs connect to how NAT works: a router translates private IPs to public ones, same concept as an internet gateway in AWS.
 
-Quick Example
+### Quick Example      
 Removed the HTTP inbound rule (port 80) from my instance's SG resulted in browser timed out. Re-added it, page loaded instantly. Also tested accessing an instance with no web server installed: got "connection refused" instead of a timeout. Timeout = SG blocking traffic. Connection refused = traffic got through but nothing is listening. Full lab write-up in 06-aws/labs/
