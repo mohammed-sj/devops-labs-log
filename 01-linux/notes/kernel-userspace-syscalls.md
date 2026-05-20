@@ -46,14 +46,14 @@
     - Managing access to hardware so multiple programs don't "fight" over it simultaneously.
     - Prevents an infinite loop from hogging CPU forever.
 
-## Commands / Syntax to remember [Only the ones worth remembering]
+## Commands
 - `strace` | troubleshooting tool for tracing systemcalls
 - `echo $$` | gives your shell process id (PID)
 ## Quick Example 
 - Syscalls (very concise workflow of what happens when you `ls`): 
-    1. shell runs fork and exec syscalls to run the program ls
-    2. ls is ran as a seperate child process, and this process runs another syscall (`getdents`) to read files
-    3. kernel checks permissions, then passes a request to drivers to get data from hardware
-    4. hardware returns data through drivers and the kernel to ls
-    5. ls performs a `write` syscall to send its output to the terminal, then exits on its own.
-    6. Kernel signals to shell that `ls`process has exited, after which the shell prints the next prompt.
+    - shell runs fork and exec syscalls to run the program ls
+    - ls is ran as a seperate child process, and this process runs another syscall (`getdents`) to read files
+    - kernel checks permissions, then passes a request to drivers to get data from hardware
+    - hardware returns data through drivers and the kernel to ls
+    - ls performs a `write` syscall to send its output to the terminal, then exits on its own.
+    - Kernel signals to shell that `ls`process has exited, after which the shell prints the next prompt.
