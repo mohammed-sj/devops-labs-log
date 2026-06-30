@@ -93,6 +93,3 @@ Stand up a Flask app reachable only through an nginx reverse proxy, both in a Do
 - **Symptom:** `docker compose up --build` failed validation with `services.flask_backend additional properties 'nginx_proxy' not allowed`.
 - **Cause:** `nginx_proxy` was indented one level too deep, so YAML read it as a key *inside* `flask_backend` instead of as a sibling service under `services:`.
 - **Fix:** De-indented `nginx_proxy` to line up with `flask_backend`, making both direct children of `services:`. Stack came up clean after that.
-
-## What this teaches
-Service-name resolution between containers isn't magic — it works because Compose puts both services on a shared network and runs DNS so a name like `flask_backend` resolves to the right container; hard-coding a `172.x` IP would break the moment that address changes. Not publishing a port is itself a security boundary: a service with no `ports:` entry is reachable only by its network peers, and the way you *prove* that is by failing to connect to it from the host, not by assuming.
