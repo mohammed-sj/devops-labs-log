@@ -1,7 +1,7 @@
 # Lab: Dockerized Flask app behind nginx in a Compose stack
 
 ## Goal
-Stand up a shipped-shaped multi-container app where traffic, state, image, and secrets are each handled the way production handles them — and prove the visit counter's state survives container recreation but not volume removal.
+Stand up a shipped-shaped multi-container app where traffic, state, image, and secrets are each handled the way production handles them, and prove the visit counter's state survives container recreation but not volume removal.
 
 ## Setup
 - Started from a copied in `app.py`: a small Flask app that increments a visit counter, persists it to `/data/counter.txt`, and listens on `0.0.0.0` so traffic can reach it from outside the container.
@@ -72,4 +72,68 @@ Persistence, tested as a two-phase control:
 - How to practically attach volumes to containers.
 - Containers can be removed and recreated without losing data using volumes. Only down -v destroys the data.
 - Publishing a port is for exposure, not for connecting services. Containers on the same Compose network already reach each other's ports directly using service names. Only nginx maps to the host with 5002:80 while everything behind it stays unreachable from outside.
-- When hardening a runtime image perform all privileged setups before the `USER`instruction. 
+- When hardening a runtime image perform all privileged setups before the `USER`instruction.
+
+
+## Files
+
+`app.py` was provided, not written by me — it's the Flask counter app the stack is built around. `.env` holds `APP_SECRET` and `DATA_DIR` and is listed in both `.gitignore` and `.dockerignore`, so it never reaches version history or an image layer.
+
+### Dockerfile
+```dockerfile
+FROM python:3.12-slim AS builder
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --prefix=/install -r requirements.txt
+
+FROM python:3.12-slim
+WORKDIR /app
+COPY --from=builder /install /usr/local
+RUN useradd --create-home appuser
+RUN mkdir -p /data && chown appuser:appuser /data
+USER appuser
+COPY . .
+ENTRYPOINT ["python", "app.py"]
+CMD ["--port", "5000"]
+```
+
+### docker-compose.yml
+```yaml
+services:
+  web:
+    build: .
+    volumes:
+      - counter_data:/data
+    env_file:
+      - .env
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "5002:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
+volumes:
+  counter_data:
+```
+
+### nginx.conf
+```nginx
+events {}
+
+http {
+	upstream web_backend {
+		server web:5000;
+	}
+
+	server {
+		listen 80;
+		location / {
+			proxy_pass http://web_backend;
+		}
+	}
+}
+``` 
