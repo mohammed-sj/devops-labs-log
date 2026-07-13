@@ -77,7 +77,7 @@ Persistence, tested as a two-phase control:
 
 ## Files
 
-`app.py` was provided, not written by me — it's the Flask counter app the stack is built around. `.env` holds `APP_SECRET` and `DATA_DIR` and is listed in both `.gitignore` and `.dockerignore`, so it never reaches version history or an image layer.
+`app.py` was provided, not written by me, it's the Flask counter app the stack is built around. `.env` holds `APP_SECRET` and `DATA_DIR` and is listed in both `.gitignore` and `.dockerignore`, so it never reaches version history or an image layer.
 
 ### Dockerfile
 ```dockerfile
